@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Validasi Jadwal Ruangan</title>
+</head>
+<body>
+    <h2>Validasi Jadwal Ruangan</h2>
+
+    <form onsubmit="validasi(event)">
+        <label>Pilih Ruangan</label><br>
+        <select id="ruangan">
+            <option>Ruang A</option>
+            <option>Ruang B</option>
+            <option>Ruang C</option>
+        </select><br><br>
+
+        <label>Tanggal</label><br>
+        <input type="date" id="tanggal" required><br><br>
+
+        <label>Waktu</label><br>
+        <input type="time" id="waktu" required><br><br>
+
+        <button type="submit">Periksa Jadwal</button>
+    </form>
+
+    <p id="hasil"></p>
+
+    <script>
+        const jadwalTerpakai = [
+            { ruangan: "Ruang A", tanggal: "2026-11-26", waktu: "09:00" },
+            { ruangan: "Ruang B", tanggal: "2026-11-27", waktu: "10:00" }
+        ];
+
+        function validasi(event) {
+            event.preventDefault();
+
+            const ruangan = document.getElementById("ruangan").value;
+            const tanggal = document.getElementById("tanggal").value;
+            const waktu = document.getElementById("waktu").value;
+
+            const bentrok = jadwalTerpakai.some(jadwal =>
+                jadwal.ruangan === ruangan &&
+                jadwal.tanggal === tanggal &&
+                jadwal.waktu === waktu
+            );
+
+            document.getElementById("hasil").textContent = bentrok
+                ? "Jadwal sudah digunakan! Silakan pilih waktu lain."
+                : "Jadwal tersedia, peminjaman dapat diajukan.";
+        }
+    </script>
+</body>
+</html>
