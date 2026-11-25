@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Peminjaman Ruangan</title>
+</head>
+<body>
+    <h2>Form Peminjaman Ruangan Kampus</h2>
+
+    <form onsubmit="ajukanPeminjaman(event)">
+        <label>Nama Peminjam</label><br>
+        <input type="text" id="nama" required><br><br>
+
+        <label>Pilih Ruangan</label><br>
+        <select id="ruangan">
+            <option value="Ruang A">Ruang A</option>
+            <option value="Ruang B">Ruang B</option>
+            <option value="Ruang C">Ruang C</option>
+        </select><br><br>
+
+        <label>Tanggal Peminjaman</label><br>
+        <input type="date" id="tanggal" required><br><br>
+
+        <label>Waktu Peminjaman</label><br>
+        <input type="time" id="waktu" required><br><br>
+
+        <button type="submit">Ajukan Peminjaman</button>
+    </form>
+
+    <p id="pesan"></p>
+
+    <script>
+        function ajukanPeminjaman(event) {
+            event.preventDefault();
+            const nama = document.getElementById("nama").value;
+            const ruangan = document.getElementById("ruangan").value;
+
+            document.getElementById("pesan").textContent =
+                "Peminjaman oleh " + nama +
+                " untuk " + ruangan + " berhasil diajukan!";
+        }
+    </script>
+</body>
+</html>
